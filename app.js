@@ -1,32 +1,34 @@
-// Crea la variable que va a contener la lista de amigos
-let listaAmigos = [];
+let lista = [];
 
-/* Crea la funcion "agregarAmigo" señalada en el index 
-   para agregar un nuevo nombre al momento de presionar 
-   el boton "Añadir" 
-*/
+function limpiarCaja(){
+  document.getElementById("amigo").value = "";
+}
+
+function asignarTextoElemento(elemento, texto) {
+  let listaHTML = document.getElementById(elemento);
+  listaHTML.innerHTML = "<ul>" + texto.map(item => `<li>${item}</li>`).join("") + "</ul>";
+}
+
 function agregarAmigo(){
-  /* Asigna la variable en la cual se va almacenar un nuevo nombre, 
-     toma el valor de entrada con el id "amigo" señalado en el index,
-     y le asigna el valor escrito con ".value"
-  */
-  let nuevoNombre = document.getElementById("amigo").value;
-  /* Si se escribio un nombre, se agrega a la lista de amigos
-     y se manda a llamar a la funcion limpiar caja
-  */
-  if(nuevoNombre != ""){
-    listaAmigos.push(nuevoNombre);
-    console.log(listaAmigos);
-    limpiarCaja();
-    // Si no se escribio un nombre se muestra un mensaje de alerta
-  } else{
+     let nuevoNombre = document.getElementById("amigo").value;
+  if(nuevoNombre === ""){
     alert("Por favor ingresa un nombre");
+  } else {
+    lista.push(nuevoNombre);
+    console.log(lista);
+    asignarTextoElemento("listaAmigos", lista);
+    limpiarCaja();
   }
 }
 
-// Funcion para limpiar la caja de texto
-function limpiarCaja(){
-  let valorCaja = document.getElementById("amigo");
-  valorCaja.value = "";
+function sortearAmigo(){
+  if(lista.length === 0){
+    alert("Por favor ingresa un nombre");
+  } else{
+    let sortear = Math.floor(Math.random()*lista.length);
+    let amigo = document.getElementById("resultado");
+    console.log(lista[sortear]);
+    amigo.innerHTML = `El amigo secreto sorteado es: ${lista[sortear]}`;
+    asignarTextoElemento("listaAmigos", []);
+  }
 }
-
