@@ -10,7 +10,7 @@ function asignarTextoElemento(elemento, texto) {
 }
 
 function agregarAmigo(){
-     let nuevoNombre = document.getElementById("amigo").value;
+     let nuevoNombre = document.getElementById("amigo").value.trim();
   if(nuevoNombre === ""){
     alert("Por favor ingresa un nombre");
   } else {
@@ -29,6 +29,5 @@ function sortearAmigo(){
     let amigo = document.getElementById("resultado");
     console.log(lista[sortear]);
     amigo.innerHTML = `El amigo secreto sorteado es: ${lista[sortear]}`;
-    asignarTextoElemento("listaAmigos", []);
   }
 }
